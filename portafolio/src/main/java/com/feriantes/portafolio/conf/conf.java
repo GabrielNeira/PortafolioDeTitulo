@@ -13,10 +13,10 @@ public class conf {}
 // protected void configure(final HttpSecurity http) throws Exception {
 //     http
 //         .formLogin()
-//         .loginPage("/index.html")
+//         .loginPage("/login.html")
 //         .failureUrl("/login-error.html")
 //       .and()
 //         .logout()
-//         .logoutSuccessUrl("/userForm.html");
+//         .logoutSuccessUrl("/home.html");
 // }
 // }

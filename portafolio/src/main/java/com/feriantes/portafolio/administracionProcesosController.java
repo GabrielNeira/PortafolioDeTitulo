@@ -12,7 +12,7 @@ public class administracionProcesosController {
     @GetMapping("/administracionProcesos")
     public String administracionProcesos(Model model){
         
-        return "/administracionUsuarios";
+        return "/administracionProcesos";
     }
 
 }

@@ -1,0 +1,37 @@
+	<div class="card-body">
+		<form class="form" id="formProceso" th:action="@{/administracionProcesos}" method="post" th:object="${procesoCrear}" role="form" autocomplete="off">
+			<div class="form-group row">
+				<input class="form-control" type="hidden" id="funcion" th:field="*{funcion}" >
+				<input class="form-control" type="hidden" id="funcion" th:field="*{idProceso}" >
+				<label class="col-lg-3 col-form-label form-control-label">Nombre</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="text" th:field="*{nombreProceso}" >
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">Estado</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="text" th:field="*{estadoProceso}" >
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">Fecha Inicio</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="text" th:field="*{fechaInicio}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">Fecha Término</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="text" th:field="*{fechaTermino}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-lg-12 text-center">
+					<input type="reset" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-primary"
+						value="Save Changes">
+				</div>
+			</div>
+		</form>
+	</div>

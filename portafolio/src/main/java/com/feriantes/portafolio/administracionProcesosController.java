@@ -33,10 +33,10 @@ public class administracionProcesosController {
 
         
     @GetMapping("/{idProceso}")
-    public String buscarIdProceso(Model model, @PathVariable int id_proceso){
+    public String buscarIdProceso(Model model, @PathVariable int idProceso){
     	ProcesoTO proceso = null;
     	try {
-    		proceso = ProcesoDao.obteneProcesoId(id_proceso);
+    		proceso = ProcesoDao.obteneProcesoId(idProceso);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +60,7 @@ public class administracionProcesosController {
 		}
     	cargaProceso(model);
     	model.addAttribute("procesoCrear", new ProcesoTO());
-    	return "/administracionUsuarios";
+    	return "/administracionProcesos";
     }
 
     private void cargaProceso(Model model ) {

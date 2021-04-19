@@ -31,11 +31,11 @@ public class ContratoDao {
 					
 					while (rs.next()) {
 						ContratoTO contrato  = new ContratoTO();
-						contrato.setIdContrato(rs.getInt("idContrato"));
-						contrato.setCodProductor(rs.getInt("codProductor"));
-						contrato.setEstadoContrato(rs.getInt("estadoContrato"));
-						contrato.setFechaGeneracion(rs.getString("fechaGeneracion"));
-						contrato.setFechaVencimiento(rs.getString("fechaVencimiento"));
+						contrato.setIdContrato(rs.getInt("id_contrato"));
+						contrato.setCodProductor(rs.getString("productor"));
+						contrato.setEstadoContrato(rs.getInt("estado"));
+						contrato.setFechaGeneracion(rs.getString("fecha_generacion"));
+						contrato.setFechaVencimiento(rs.getString("fecha_vencimiento"));
 						listaRetorno.add(contrato);
 					}
 				}
@@ -53,10 +53,11 @@ public class ContratoDao {
 			try (ResultSet rs = (ResultSet)call.getObject ("p_resultado");) {  
 				
 				while (rs.next()) {
-					contrato.setCodProductor(rs.getInt("idContrato"));
-					contrato.setEstadoContrato(rs.getInt("estadoContrato"));
-					contrato.setFechaGeneracion(rs.getString("fechaGeneracion"));
-					contrato.setFechaVencimiento(rs.getString("fechaVencimiento"));
+					contrato.setIdContrato(rs.getInt("id_contrato"));
+					contrato.setCodProductor(rs.getString("productor"));
+					contrato.setEstadoContrato(rs.getInt("estado"));
+					contrato.setFechaGeneracion(rs.getString("fecha_generacion"));
+					contrato.setFechaVencimiento(rs.getString("fecha_vencimiento"));
 				}
 			}
 		}
@@ -67,7 +68,7 @@ public class ContratoDao {
 		try (Connection con = conexion.getConnection();
 				CallableStatement  call = con.prepareCall ("CALL AGREGAR_CONTRATO(?,?,?)");) {
 
-			call.setInt("p_productor", contrato.getCodProductor());
+			call.setString("p_productor", contrato.getCodProductor());
 			call.setInt("p_estado", contrato.getEstadoContrato());
 			call.setString("p_fechagen", contrato.getFechaGeneracion());
 			call.setString("p_fechavenc", contrato.getFechaVencimiento());
@@ -79,7 +80,7 @@ public class ContratoDao {
 	public void editaContrato(ContratoTO contrato) throws SQLException {
 		try (Connection con = conexion.getConnection();
 				CallableStatement  call = con.prepareCall ("CALL ACTUALIZA_CONTRATO(?,?,?,?)");) {
-			call.setInt("p_productor", contrato.getCodProductor());
+			call.setString("p_productor", contrato.getCodProductor());
 			call.setInt("p_estado", contrato.getEstadoContrato());
 			call.setString("p_fechagen", contrato.getFechaGeneracion());
 			call.setString("p_fechavenc", contrato.getFechaVencimiento());

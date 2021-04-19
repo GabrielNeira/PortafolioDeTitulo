@@ -31,10 +31,10 @@ public class administracionContratosController {
 
         
     @GetMapping("/{idContrato}")
-    public String buscarIdContrato(Model model, @PathVariable int id_proceso){
+    public String buscarIdContrato(Model model, @PathVariable int idContrato){
     	ContratoTO proceso = null;
     	try {
-    		proceso = ContratoDao.obtenerContratoId(id_proceso);
+    		proceso = ContratoDao.obtenerContratoId(idContrato);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -43,7 +43,7 @@ public class administracionContratosController {
     	
     	model.addAttribute("contratoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
-    	return "/administracionContrato";
+    	return "/administracionContratos";
     }
 	@PostMapping()
     public String crearContrato(Model model ,

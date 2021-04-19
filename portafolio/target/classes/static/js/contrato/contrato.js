@@ -3,14 +3,14 @@ $(document).ready(function() {
 	var abrirModal = $('#llamado').val();
 	
 	if(abrirModal !== null && abrirModal === "actualizar"){
-		$('#funcion').val("actualizarContrato");
+		$('#funcion').val("actualizarProceso");
 		$('#myModal').modal('toggle');
 		$('#myModal').modal('show');
 	}
 
 
-	$("#crearUsuario").click(function() {
-		$('#funcion').val("crearContrato");
+	$("#crearProceso").click(function() {
+		$('#funcion').val("crearProceso");
 		$('#myModal').modal('toggle');
 		$('#myModal').modal('show');
 	});

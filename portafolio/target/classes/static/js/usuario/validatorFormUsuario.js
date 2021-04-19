@@ -1,4 +1,5 @@
 $("#formUsuario").validate({
+  errorClass: 'errorForm',
   rules: {
     nombre: {
         required: true

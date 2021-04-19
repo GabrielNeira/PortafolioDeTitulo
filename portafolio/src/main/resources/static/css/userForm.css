@@ -26,3 +26,6 @@ label{
 .nav-tabs{
 	border-bottom:0px;
 }
+.errorForm{
+	color: red;
+}

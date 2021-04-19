@@ -63,6 +63,10 @@ button{
 .forgot a{
     color: white;
 }
+
+.errorForm{
+	color: red;
+}
 footer
 {
     margin-top:50px;

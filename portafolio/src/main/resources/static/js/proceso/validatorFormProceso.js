@@ -1,24 +1,32 @@
+
 $("#formProceso").validate({
+ errorClass: 'errorForm',
   rules: {
-    nombre: {
+    nombreProceso: {
         required: true
 	},
-	apellido: {
+	estadoProceso: {
         required: true
 	},
-	email: {
+	fechaInicio: {
+        required: true
+	},
+	fechaTermino: {
         required: true
 	}
   },
   messages : {
-	nombre: {
-        required: "Debe ingresar un Nombre"
+	nombreProceso: {
+        required: "Debe ingresar un Nombre para el proceso"
 	},
-	fecha_inicio: {
-        required: "Debe ingresar una fecha_inicio"
+	estadoProceso: {
+        required: "Debe ingresar un Estado del proceso"
 	},
-	fecha_termino: {
-        required: "Debe ingresar una fecha_termino"
+	fechaInicio: {
+        required: "Debe ingresar la fecha de inicio"
+	},
+	fechaTermino: {
+        required: "Debe ingresar la fecha de termino"
 	}
   },
    submitHandler: function(form) {

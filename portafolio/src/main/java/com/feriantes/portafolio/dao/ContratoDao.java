@@ -66,7 +66,7 @@ public class ContratoDao {
 	
 	public void crearContrato(ContratoTO contrato) throws SQLException {
 		try (Connection con = conexion.getConnection();
-				CallableStatement  call = con.prepareCall ("CALL AGREGAR_CONTRATO(?,?,?)");) {
+				CallableStatement  call = con.prepareCall ("CALL AGREGAR_CONTRATO(?,?,?,?)");) {
 
 			call.setString("p_productor", contrato.getCodProductor());
 			call.setInt("p_estado", contrato.getEstadoContrato());
@@ -79,7 +79,8 @@ public class ContratoDao {
 	
 	public void editaContrato(ContratoTO contrato) throws SQLException {
 		try (Connection con = conexion.getConnection();
-				CallableStatement  call = con.prepareCall ("CALL ACTUALIZA_CONTRATO(?,?,?,?)");) {
+				CallableStatement  call = con.prepareCall ("CALL ACTUALIZA_CONTRATO(?,?,?,?,?)");) {
+			call.setInt("p_id", contrato.getIdContrato());		
 			call.setString("p_productor", contrato.getCodProductor());
 			call.setInt("p_estado", contrato.getEstadoContrato());
 			call.setString("p_fechagen", contrato.getFechaGeneracion());

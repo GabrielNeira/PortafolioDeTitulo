@@ -83,4 +83,12 @@ public class UsuarioDao {
 		}
 	}
 
+	public void eliminaUsuario(int idUsuario) throws SQLException {
+		try (Connection con = conexion.getConnection();
+		CallableStatement  call = con.prepareCall ("CALL ELIMINAR_USUARIO(?)");) {
+			call.setInt("p_id", idUsuario);
+			call.execute ();
+		}
+	}
+
 }

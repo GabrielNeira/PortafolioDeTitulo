@@ -9,6 +9,7 @@ import com.feriantes.portafolio.to.ContratoTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,7 +59,7 @@ public class administracionContratosController {
 		}
     	cargaContrato(model);
     	model.addAttribute("contratoCrear", new ContratoTO());
-    	return "/administracionContratos";
+    	return "redirect:/administracionContratos";
     }
 
     private void cargaContrato(Model model ) {
@@ -72,6 +73,22 @@ public class administracionContratosController {
         if(listaContratos != null)
         	model.addAttribute("listaContrato",listaContratos);
         
+    }
+
+	@DeleteMapping("/{idContrato}")
+    public String borrarContrato(Model model, @PathVariable int idContrato){
+    	try {
+    		ContratoDao.eliminaContrato(idContrato);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	cargaContrato(model);
+    	
+    	
+    	model.addAttribute("contratoCrear",new ContratoTO());
+    	model.addAttribute("llamado","actualizar");
+		model.addAttribute("eliminado",true);
+    	return "/administracionContratos";
     }
 
 }

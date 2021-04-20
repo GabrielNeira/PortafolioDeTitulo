@@ -87,4 +87,12 @@ public void editarProceso(ProcesoTO proceso) throws SQLException {
 	}
 }
 
+public void eliminaProceso(int idProceso) throws SQLException {
+	try (Connection con = conexion.getConnection();
+	CallableStatement  call = con.prepareCall ("CALL ELIMINAR_PROCESO(?)");) {
+		call.setInt("p_id", idProceso);
+		call.execute ();
+	}
+}
+
 }

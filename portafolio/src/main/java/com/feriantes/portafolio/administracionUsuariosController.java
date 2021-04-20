@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,7 +59,7 @@ public class administracionUsuariosController {
 		}
     	cargaUsuarios(model);
     	model.addAttribute("usuarioCrear", new UsuarioTO());
-    	return "/administracionUsuarios";
+    	return "redirect:/administracionUsuarios";
     }
     
     private void cargaUsuarios(Model model ) {
@@ -72,6 +73,22 @@ public class administracionUsuariosController {
         if(listaUsuarios != null)
         	model.addAttribute("listaUsuario",listaUsuarios);
         
+    }
+
+	@DeleteMapping("/{idUsuario}")
+    public String borrarContrato(Model model, @PathVariable int idUsuario){
+    	try {
+    		usuarioDao.eliminaUsuario(idUsuario);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	cargaUsuarios(model);
+    	
+    	
+    	model.addAttribute("usuarioCrear",new UsuarioTO());
+    	model.addAttribute("llamado","actualizar");
+		model.addAttribute("eliminado",true);
+    	return "/administracionUsuarios";
     }
 
 }

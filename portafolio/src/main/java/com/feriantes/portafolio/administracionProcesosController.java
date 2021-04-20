@@ -5,6 +5,7 @@ package com.feriantes.portafolio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,7 +61,7 @@ public class administracionProcesosController {
 		}
     	cargaProceso(model);
     	model.addAttribute("procesoCrear", new ProcesoTO());
-    	return "/administracionProcesos";
+    	return "redirect:/administracionProcesos";
     }
 
     private void cargaProceso(Model model ) {
@@ -74,6 +75,22 @@ public class administracionProcesosController {
         if(listaProcesos != null)
         	model.addAttribute("listaProcesos",listaProcesos);
         
+    }
+
+	@DeleteMapping("/{idProceso}")
+    public String borrarContrato(Model model, @PathVariable int idProceso){
+    	try {
+    		ProcesoDao.eliminaProceso(idProceso);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	cargaProceso(model);
+    	
+    	
+    	model.addAttribute("procesoCrear",new ProcesoTO());
+    	model.addAttribute("llamado","actualizar");
+		model.addAttribute("eliminado",true);
+    	return "/administracionProcesos";
     }
     
 

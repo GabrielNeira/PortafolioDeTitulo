@@ -89,4 +89,17 @@ public class ContratoDao {
 		}
 	}
 
+	public void eliminaContrato(int idContrato) throws SQLException {
+		try (Connection con = conexion.getConnection();
+		CallableStatement  call = con.prepareCall ("CALL ELIMINAR_CONTRATO(?)");) {
+			call.setInt("p_id", idContrato);
+			call.execute ();
+		}
+	}
+
+
+		
+		
+	
+
 }

@@ -19,3 +19,14 @@ $(document).ready(function() {
 function editar(id){
 	$(location).attr('href', '/feriavirtual/administracionUsuarios/'+id)
 }
+
+function eliminar(id){
+	$.ajax({
+		url: '/feriavirtual/administracionUsuarios/'+id,
+		type: 'DELETE',
+		success: function(result) {
+			alert("Usuario Eliminado");
+			$(location).attr('href', '/feriavirtual/administracionUsuarios/')
+		}
+	});
+}

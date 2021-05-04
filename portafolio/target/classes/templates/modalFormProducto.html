@@ -1,0 +1,61 @@
+	<div class="card-body">
+		<form class="form" id="formProducto" th:action="@{/administracionProductos}" method="post" th:object="${productoCrear}" role="form" autocomplete="off">
+			<div class="form-group row">
+				<input class="form-control" type="hidden" id="funcion" th:field="*{funcion}" >
+				<input class="form-control" type="hidden" id="funcion" th:field="*{idProducto}" >
+				<label class="col-lg-3 col-form-label form-control-label">Nombre</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="text" th:field="*{nombreProducto}" >
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">Cantidad</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="number" th:field="*{cantidadProducto}" >
+				</div>
+			</div>
+			<div class="form-group row">
+					<label class="col-lg-3 col-form-label form-control-label">Peso</label>
+					<div class="col-lg-9">
+						<input class="form-control" type="number" th:field="*{pesoProducto}">
+					</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">Volumen (m2)</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="number" th:field="*{volumenProducto}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">Estado</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="number" th:field="*{estadoProducto}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">¿Refrigerado?</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="number" th:field="*{refrigeracion}">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-lg-3 col-form-label form-control-label">Fecha Llegada</label>
+				<div class="col-lg-9">
+					<input class="form-control" type="text" th:field="*{fechaLlegada}">
+				</div>
+			</div>
+				<div class="form-group row">
+					<label class="col-lg-3 col-form-label form-control-label">Productor</label>
+					<div class="col-lg-9">
+						<input class="form-control" type="number" th:field="*{codProductor}">
+					</div>
+				</div>
+			<div class="form-group row">
+				<div class="col-lg-12 text-center">
+					<input type="reset" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-primary"
+						value="Save Changes">
+				</div>
+			</div>
+		</form>
+	</div>

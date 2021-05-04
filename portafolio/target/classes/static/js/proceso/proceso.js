@@ -19,3 +19,14 @@ $(document).ready(function() {
 function editar(id){
 	$(location).attr('href', '/feriavirtual/administracionProcesos/'+id)
 }
+
+function eliminar(id){
+	$.ajax({
+		url: '/feriavirtual/administracionProcesos/'+id,
+		type: 'DELETE',
+		success: function(result) {
+			alert("Proceso Eliminado");
+			$(location).attr('href', '/feriavirtual/administracionProcesos/')
+		}
+	});
+}

@@ -9,7 +9,10 @@ $("#formUsuario").validate({
 	},
 	email: {
         required: true
-	}
+	},
+        tipo:{
+        required: true
+        }
   },
   messages : {
 	nombre: {
@@ -20,7 +23,10 @@ $("#formUsuario").validate({
 	},
 	email: {
         required: "Debe ingresar un Email"
-	}
+	},
+        tipo: {
+        required: "Debe ingresar un Tipo"
+        }
   },
    submitHandler: function(form) {
       form.submit();

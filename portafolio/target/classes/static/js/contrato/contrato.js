@@ -19,3 +19,14 @@ $(document).ready(function() {
 function editar(id){
 	$(location).attr('href', '/feriavirtual/administracionContratos/'+id)
 }
+
+
+	function eliminar(id){
+		$.ajax({
+			url: '/feriavirtual/administracionContratos/'+id,
+			type: 'DELETE',
+			success: function(result) {
+				alert("Contrato Eliminado");
+				$(location).attr('href', '/feriavirtual/administracionContratos/')			}
+		});
+}

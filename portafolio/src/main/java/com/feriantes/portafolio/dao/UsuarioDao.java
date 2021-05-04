@@ -35,6 +35,7 @@ public class UsuarioDao {
 						user.setNombre(rs.getString("nombre"));
 						user.setApellido(rs.getString("apelllido"));
 						user.setEmail(rs.getString("email"));
+						user.setTipo(rs.getInt("tipo"));
 						listaRetorno.add(user);
 					}
 				}
@@ -56,6 +57,7 @@ public class UsuarioDao {
 					usuario.setNombre(rs.getString("nombre"));
 					usuario.setApellido(rs.getString("apelllido"));
 					usuario.setEmail(rs.getString("email"));
+					usuario.setTipo(rs.getInt("tipo"));
 				}
 			}
 		}
@@ -64,21 +66,23 @@ public class UsuarioDao {
 	
 	public void crearUsuario(UsuarioTO user) throws SQLException {
 		try (Connection con = conexion.getConnection();
-				CallableStatement  call = con.prepareCall ("CALL AGREGAR_USUARIO(?,?,?)");) {
+				CallableStatement  call = con.prepareCall ("CALL AGREGAR_USUARIO(?,?,?,?)");) {
 			call.setString("p_nombre", user.getNombre());
 			call.setString("p_apellido", user.getApellido());
 			call.setString("p_email", user.getEmail());
+			call.setInt("p_tipo", user.getTipo());
 			call.execute ();
 		}
 	}
 	
 	public void editarUsuario(UsuarioTO user) throws SQLException {
 		try (Connection con = conexion.getConnection();
-				CallableStatement  call = con.prepareCall ("CALL ACTUALIZA_USUARIO(?,?,?,?)");) {
+				CallableStatement  call = con.prepareCall ("CALL ACTUALIZA_USUARIO(?,?,?,?,?)");) {
 			call.setString("p_nombre", user.getNombre());
 			call.setString("p_apellido", user.getApellido());
 			call.setString("p_email", user.getEmail());
 			call.setInt("p_id", user.getIdUsuario());
+			call.setInt("p_tipo", user.getTipo());
 			call.execute ();
 		}
 	}
@@ -89,6 +93,28 @@ public class UsuarioDao {
 			call.setInt("p_id", idUsuario);
 			call.execute ();
 		}
+	}
+
+	public UsuarioTO obtenerUsuarioMail(String  mail) throws SQLException {
+		UsuarioTO usuario = null;
+		try (Connection con = conexion.getConnection();
+				CallableStatement  call = con.prepareCall ("CALL OBTENER_USUARIO_MAIL(?,?)");) {
+			call.setString("p_mail", mail);
+			call.registerOutParameter ("p_resultado", OracleTypes.CURSOR);
+			call.execute ();
+			try (ResultSet rs = (ResultSet)call.getObject ("p_resultado");) {  
+				usuario = new UsuarioTO();
+				while (rs.next()) {
+					usuario.setIdUsuario(rs.getInt("id_usuario"));
+					usuario.setNombre(rs.getString("nombre"));
+					usuario.setApellido(rs.getString("apelllido"));
+					usuario.setEmail(rs.getString("email"));
+					usuario.setTipo(rs.getInt("tipo"));
+					usuario.setPassword(rs.getString("password"));
+				}
+			}
+		}
+		return usuario;
 	}
 
 }

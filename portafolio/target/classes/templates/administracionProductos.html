@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ALTO MAIPO</title>
+
+<!--JQUERY-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+
+<!-- Los iconos tipo Solid de Fontawesome-->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+<!-- Nuestro css-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/user-form.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/form-error.css}">
+<!-- DATA TABLE -->
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+
+</head>
+<body>
+
+	<div th:replace="fragments/menu :: menu "></div>
+	<div class="card">
+		<div class="card-header">
+			<h4>Administración de Productos</h4>
+		</div>
+		<button type="button" class="btn btn-primary" id="crearProducto">Crear
+			Productos</button>
+		<div class="card-body">
+			<input class="form-control" type="hidden" id="llamado"
+				th:value="${llamado}">
+			<div class="table-responsive">
+				<table id="listProcesos"
+					class="table table-bordered table-hover table-striped">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Cantidad</th>
+							<th scope="col">Peso</th>
+							<th scope="col">Volumen</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Refrigeración</th>
+							<th scope="col">Fecha Llegada</th>
+							<th scope="col">Productor</th>
+							<th scope="col">Acciones</th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${ listaProducto == null || listaProducto.empty}">
+							<td colspan="11">Sin data</td>
+						</tr>
+						<tr th:each="item : ${listaProducto}">
+							<td><span th:text="${item.idProducto}"></span></td>
+							<td><span th:text="${item.nombreProducto}"></span></td>
+							<td><span th:text="${item.cantidadProducto}"></span></td>
+							<td><span th:text="${item.pesoProducto}"></span></td>
+							<td><span th:text="${item.volumenProducto}"></span></td>
+							<td><span th:text="${item.estadoProducto}"></span></td>
+							<td><span th:text="${item.refrigeracion}"></span></td>
+							<td><span th:text="${item.fechaLlegada}"></span></td>
+							<td><span th:text="${item.codProductor}"></span></td>
+
+							<td><a href="#" th:data-idProducto="${item.idProducto}"
+								onclick="editar(this.getAttribute('data-idProducto'))"><i
+									class="fas fa-edit"></i></a> | <a href="#" th:data-idProducto="${item.idProducto}"
+									onclick="eliminar(this.getAttribute('data-idProducto'))"><i
+									class="fas fa-user-times"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div th:replace="fragments/footer :: footer "></div>
+	</footer>
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Creación de Producto</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div th:replace="modalFormProducto.html"></div>
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<!-- 			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<script th:src="@{/js/lib/jquery-3.2.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/lib/jquery-ui.js}" type="text/javascript"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script th:src="@{/js/lib/jquery.validate.min.js}"
+		type="text/javascript"></script>
+	<script th:src="@{/js/lib/bootstrap.min.js}" type="text/javascript"></script>
+	<script th:src="@{/js/producto/producto.js}" type="text/javascript"></script>
+	<script th:src="@{/js/producto/validatorFormProducto.js}"
+		type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+			$('#listProcesos').DataTable();
+		});
+	</script>
+</body>
+</html>

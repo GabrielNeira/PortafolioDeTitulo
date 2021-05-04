@@ -69,9 +69,11 @@
 							<td><span th:text="${item.nombre}"></span></td>
 							<td><span th:text="${item.apellido}"></span></td>
 							<td><span th:text="${item.email}"></span></td>
-							<td>Administrador</td>
-							<td><a href="#" th:data-idUsuario="${item.idUsuario}"  onclick="editar(this.getAttribute('data-idUsuario'))"  ><i class="fas fa-edit" ></i></a> | <a
-								href="#"><i class="fas fa-user-times"></i></a></td>
+							<td><span th:text="${item.tipo}"></span></td>
+							<td><a href="#" th:data-idUsuario="${item.idUsuario}"
+								  onclick="editar(this.getAttribute('data-idUsuario'))">
+								<i class="fas fa-edit" ></i></a> | <a href="#" th:data-idUsuario="${item.idUsuario}"
+								onclick="eliminar(this.getAttribute('data-idUsuario'))"><i class="fas fa-user-times"></i></a></td>
 						</tr>
 					</tbody>
 				</table>

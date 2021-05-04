@@ -75,7 +75,8 @@
 							<td><span th:text="${item.fechaTermino}"></span></td>
 							<td><a href="#" th:data-idProceso="${item.idProceso}"
 								onclick="editar(this.getAttribute('data-idProceso'))"><i
-									class="fas fa-edit"></i></a> | <a href="#"><i
+									class="fas fa-edit"></i></a> | <a href="#" th:data-idProceso="${item.idProceso}"
+									onclick="eliminar(this.getAttribute('data-idProceso'))"><i
 									class="fas fa-user-times"></i></a></td>
 						</tr>
 					</tbody>

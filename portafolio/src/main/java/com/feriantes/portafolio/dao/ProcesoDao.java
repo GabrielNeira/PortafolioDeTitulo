@@ -102,7 +102,7 @@ public void crearProceso(ProcesoTO proceso) throws SQLException {
 
 public void crearDetalleProceso(DetalleProcesoTO detalleProceso) throws SQLException {
 	try (Connection con = conexion.getConnection();
-			CallableStatement  call = con.prepareCall ("AGREGAR_DETALLE_PROCESO(?,?,?,?)");) {
+			CallableStatement  call = con.prepareCall ("CALL AGREGAR_DETALLE_PROCESO(?,?,?,?)");) {
 		System.out.println(detalleProceso.toString());
 		call.setInt("p_id_proceso", detalleProceso.getIdProceso());
 		call.setInt("p_cantidad", detalleProceso.getCantidad());

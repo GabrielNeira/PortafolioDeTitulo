@@ -43,43 +43,36 @@
 		<input class="form-control" type="hidden" id="llamado"
 		th:value="${llamado}">
 		<div class="card-header">
-			<h4>Listado de Procesos Activos</h4>
+			<h4>Listado de Transportes Disponibles</h4>
 		</div>
 		<table class="table">
 			<thead>
 			  <tr>
 				<th scope="col">ID Proceso</th>
-				<th scope="col">Estado</th>
-				<th scope="col">Nombre</th>
-				<th scope="col">Fecha de Inicio</th>
-				<th scope="col">Fecha de Término</th>
-				<th scope="col">Información</th>
+				<th scope="col">Nombre Producto</th>
+				<th scope="col">Refrigerado</th>
+				<th scope="col">Peso Total</th>
+				<th scope="col">Volumen Total</th>
+				<th scope="col">Fecha Llegada</th>
+				<th scope="col">Acciones</th>
+
 
 			  </tr>
 			</thead>
 			<tbody>
-				<tr th:each="item : ${procesos}">
-					<td><span th:text="${item.idProceso}"></span></td>
-					<td><span th:text="${item.estadoProceso}"></span></td>
-					<td><span th:text="${item.nombreProceso}"></span></td>
-					<td><span th:text="${item.fechaInicio}"></span></td>
-					<td><span th:text="${item.fechaTermino}"></span></td>
-					<td><button type="button" class="btn btn-info" th:onclick="'window.location.href=\'./detalleProcesos/' + ${item.idProceso} + '\''">Información</button></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><button type="button" class="btn btn-info">Concursar</button></td>
 				</tr>
 			  </tr>
 			</tbody>
 		  </table>
 	</div>
-	<footer>
-		<div th:replace="fragments/footer :: footer "></div>
-	</footer>
 </body>
-<script type="text/javascript">
-	$(document).ready(function() {
-		//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
-		$('#listProcesos').DataTable();
-	});
-</script>
 	<script th:src="@{/js/lib/jquery-3.2.1.min.js}" type="text/javascript"></script>
 	<script th:src="@{/js/lib/jquery-ui.js}" type="text/javascript"></script>
 

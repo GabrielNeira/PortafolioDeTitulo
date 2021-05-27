@@ -1,5 +1,7 @@
 package com.feriantes.portafolio.to;
 
+import java.util.List;
+
 public class ProcesoTO {
 
     private int idProceso;
@@ -8,8 +10,22 @@ public class ProcesoTO {
     private String fechaInicio;
     private String fechaTermino;
     private String funcion;
+    private String urlDetalle;
+    private List<DetalleProcesoTO> listaDetalleProceso;
 
 
+    public List<DetalleProcesoTO> getListaDetalleProceso() {
+        return listaDetalleProceso;
+    }
+    public void setListaDetalleProceso(List<DetalleProcesoTO> listaDetalleProceso) {
+        this.listaDetalleProceso = listaDetalleProceso;
+    }
+    public String getUrlDetalle() {
+        return urlDetalle;
+    }
+    public void setUrlDetalle(String urlDetalle) {
+        this.urlDetalle = urlDetalle;
+    }
     public int getIdProceso() {
         return idProceso;
     }

@@ -2,6 +2,7 @@ package com.feriantes.portafolio;
 
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.feriantes.portafolio.dao.ProcesoDao;
 import com.feriantes.portafolio.to.DetalleProcesoTO;
@@ -13,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +32,8 @@ public class detalleProcesosController {
        ProcesoTO proceso=null;
 		try {
 			proceso = ProcesoDao.obteneProcesoId(idProceso);
+			List<DetalleProcesoTO> lista= ProcesoDao.obtenerDetalleProceso(idProceso);
+			proceso.setListaDetalleProceso(lista);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,8 +41,6 @@ public class detalleProcesosController {
 		model.addAttribute("proceso",proceso);
         return "/detalleProcesos";
     }
-
-
 
 	@PostMapping
     public ResponseEntity<Object> create(@RequestBody DetalleProcesoTO detalle) {
@@ -53,13 +53,4 @@ public class detalleProcesosController {
 		}
         return  new ResponseEntity<>( "OK", HttpStatus.OK);
     }
-
-	
-
-	
-
-   
-	
-
-
 }

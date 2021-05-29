@@ -82,7 +82,6 @@ public void crearProducto(ProductoTO producto) throws SQLException {
 		call.setInt("p_refrigeracion",producto.getRefrigeracion());
 		call.setString("p_fecha_llegada",producto.getFechaLlegada());
 		call.setInt("p_id_productor",producto.getCodProductor());
-
 		call.execute ();
 	}
 }
@@ -109,6 +108,33 @@ public void eliminaProducto(int idProducto) throws SQLException {
 		call.setInt("p_id", idProducto);
 		call.execute ();
 	}
+}
+
+
+public List<ProductoTO> obtenerListaProductosPorMail(String email) throws SQLException {
+	List<ProductoTO> listaRetorno = new ArrayList<>();
+	try (Connection con = conexion.getConnection();
+		CallableStatement  call = con.prepareCall ("OBTIENE_PRODUCTOS_USUARIO(?)");) {
+		call.setString("p_email", email);
+		call.registerOutParameter (2, OracleTypes.CURSOR);
+		call.execute ();
+		try (ResultSet rs = (ResultSet)call.getObject (1);) {  
+			
+			while (rs.next()) {
+				ProductoTO producto =new ProductoTO();
+				producto.setIdProducto(rs.getInt("id_producto"));
+				producto.setNombreProducto(rs.getString("nombre"));
+				producto.setCantidadProducto(rs.getInt("cantidad"));
+				producto.setPesoProducto(rs.getInt("peso"));
+				producto.setVolumenProducto(rs.getInt("volumen"));
+				producto.setEstadoProducto(rs.getInt("estado"));
+				producto.setRefrigeracion(rs.getInt("refrigeracion"));
+				producto.setFechaLlegada(rs.getString("fecha_llegada"));
+				producto.setCodProductor(rs.getInt("codigo_productor"));
+			}
+		}
+	}
+	return listaRetorno;
 }
 
 }

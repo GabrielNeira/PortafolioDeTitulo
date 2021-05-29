@@ -66,8 +66,8 @@ public ProcesoTO obteneProcesoId(int id) throws SQLException {
 	return proceso;
 }
 
-public DetalleProcesoTO obtenerDetalleProceso(int id) throws SQLException {
-	DetalleProcesoTO detalleProceso = new DetalleProcesoTO();
+public List<DetalleProcesoTO> obtenerDetalleProceso(int id) throws SQLException {
+	List<DetalleProcesoTO> detalleProceso = new ArrayList <DetalleProcesoTO>();
 	try (Connection con = conexion.getConnection();
 			CallableStatement  call = con.prepareCall ("CALL BUSCAR_DETALLE_PROCESO_ID(?,?)");) {
 		call.setInt("p_id", id);
@@ -76,11 +76,13 @@ public DetalleProcesoTO obtenerDetalleProceso(int id) throws SQLException {
 		try (ResultSet rs = (ResultSet)call.getObject ("p_resultado");) {  
 			
 			while (rs.next()) {
-				detalleProceso.setIdDetalleProceso(rs.getInt("id_detalle_proceso"));
-				detalleProceso.setIdProceso(rs.getInt("id_proceso"));
-				detalleProceso.setCantidad(rs.getInt("cantidad"));
-				detalleProceso.setTipoVenta(rs.getInt("tipo_venta"));
-				detalleProceso.setIdProducto(rs.getInt("id_producto"));
+				DetalleProcesoTO det = new DetalleProcesoTO();
+				det.setIdDetalleProceso(rs.getInt("id_detalle_proceso"));
+				det.setIdProceso(rs.getInt("id_proceso"));
+				det.setCantidad(rs.getInt("cantidad"));
+				det.setTipoVenta(rs.getInt("tipo_venta"));
+				det.setIdProducto(rs.getInt("id_producto"));
+				detalleProceso.add(det);
 			}
 		}
 	}

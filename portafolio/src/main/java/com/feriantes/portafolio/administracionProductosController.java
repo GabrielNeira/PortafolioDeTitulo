@@ -44,17 +44,10 @@ public class administracionProductosController {
 			e.printStackTrace();
 		}
     	cargaProducto(model);
-    	List<ProductoTO> listaRetorno = null;
-		try {
-			listaRetorno = ProductoDao.obtenerListaProductosPorMail(user);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    
     	
     	model.addAttribute("productoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
-		model.addAttribute("listaProductosUsuario", listaRetorno);
     	return "/administracionProductos";
     }
 	@PostMapping()

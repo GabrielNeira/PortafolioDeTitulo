@@ -114,13 +114,13 @@ public void eliminaProducto(int idProducto) throws SQLException {
 public List<ProductoTO> obtenerListaProductosPorMail(String email) throws SQLException {
 	List<ProductoTO> listaRetorno = new ArrayList<>();
 	try (Connection con = conexion.getConnection();
-		CallableStatement  call = con.prepareCall ("OBTIENE_PRODUCTOS_USUARIO(?)");) {
-		call.setString("p_email", email);
-		call.registerOutParameter (2, OracleTypes.CURSOR);
+		CallableStatement  call = con.prepareCall ("CALL OBTIENE_PRODUCTOS_USUARIO(?,?)");) {
+		call.setString("pp_email", email);
+		call.registerOutParameter ("p_email", OracleTypes.CURSOR);
 		call.execute ();
-		try (ResultSet rs = (ResultSet)call.getObject (1);) {  
+		try (ResultSet rs = (ResultSet)call.getObject ("p_email");) {  
 			
-			while (rs.next()) {
+			while (rs.next()) { 	
 				ProductoTO producto =new ProductoTO();
 				producto.setIdProducto(rs.getInt("id_producto"));
 				producto.setNombreProducto(rs.getString("nombre"));
@@ -131,6 +131,7 @@ public List<ProductoTO> obtenerListaProductosPorMail(String email) throws SQLExc
 				producto.setRefrigeracion(rs.getInt("refrigeracion"));
 				producto.setFechaLlegada(rs.getString("fecha_llegada"));
 				producto.setCodProductor(rs.getInt("codigo_productor"));
+				listaRetorno.add(producto);
 			}
 		}
 	}

@@ -12,8 +12,16 @@ public class ProcesoTO {
     private String funcion;
     private String urlDetalle;
     private List<DetalleProcesoTO> listaDetalleProceso;
+    private String glosaEstado;
 
+    
 
+    public String getGlosaEstado() {
+        return glosaEstado;
+    }
+    public void setGlosaEstado(String glosaEstado) {
+        this.glosaEstado = glosaEstado;
+    }
     public List<DetalleProcesoTO> getListaDetalleProceso() {
         return listaDetalleProceso;
     }

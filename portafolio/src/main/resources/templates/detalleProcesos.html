@@ -69,7 +69,7 @@
 		<table class="table">
 			<thead>
 			  <tr>
-				<th scope="col">Cantidad Necesaria</th>
+				<th scope="col">Cantidad de Productos Registrada</th>
 				<th scope="col">Tipo de Venta</th>
 				<th scope="col">Nombre Producto</th>
 			  </tr>
@@ -77,8 +77,8 @@
 			<tbody>
 			  <tr th:each="detalleProceso : ${proceso.listaDetalleProceso}">
 				<td><span th:text="${detalleProceso.cantidad}"></span></td>
-				<td><span th:text="${detalleProceso.tipoVenta}"></span></td>
-				<td><span th:text="${detalleProceso.idProducto}"></span></td>
+				<td><span th:text="${detalleProceso.glosaTipoVenta}"></span></td>
+				<td><span th:text="${detalleProceso.nombreProducto}"></span></td>
 			  </tr>
 			</tbody>
 		  </table>

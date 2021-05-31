@@ -8,6 +8,17 @@ public class ContratoTO {
 	private String fechaGeneracion;
 	private String fechaVencimiento;
 	private String funcion;
+	private String glosaEstado;
+
+	
+
+	public String getGlosaEstado() {
+		return glosaEstado;
+	}
+
+	public void setGlosaEstado(String glosaEstado) {
+		this.glosaEstado = glosaEstado;
+	}
 
 	public int getIdContrato() {
 		return idContrato;

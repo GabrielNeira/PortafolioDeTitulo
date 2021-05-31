@@ -12,7 +12,23 @@ public class ProductoTO {
 	private String fechaLlegada;
 	private int codProductor;
 	private String funcion;
+	private int idProceso;
+	private String glosaRefrigerado;
 	
+	
+	
+	public String getGlosaRefrigerado() {
+		return glosaRefrigerado;
+	}
+	public void setGlosaRefrigerado(String glosaRefrigerado) {
+		this.glosaRefrigerado = glosaRefrigerado;
+	}
+	public int getIdProceso() {
+		return idProceso;
+	}
+	public void setIdProceso(int idProceso) {
+		this.idProceso = idProceso;
+	}
 	public int getIdProducto() {
 		return idProducto;
 	}

@@ -66,11 +66,12 @@ public class UsuarioDao {
 	
 	public void crearUsuario(UsuarioTO user) throws SQLException {
 		try (Connection con = conexion.getConnection();
-				CallableStatement  call = con.prepareCall ("CALL AGREGAR_USUARIO(?,?,?,?)");) {
+				CallableStatement  call = con.prepareCall ("CALL AGREGAR_USUARIO(?,?,?,?,?)");) {
 			call.setString("p_nombre", user.getNombre());
 			call.setString("p_apellido", user.getApellido());
 			call.setString("p_email", user.getEmail());
 			call.setInt("p_tipo", user.getTipo());
+			call.setString("p_password", user.getPassword());
 			call.execute ();
 		}
 	}

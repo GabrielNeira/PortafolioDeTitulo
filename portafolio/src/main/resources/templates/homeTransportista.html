@@ -51,29 +51,54 @@
 				<th scope="col">ID Proceso</th>
 				<th scope="col">Nombre Producto</th>
 				<th scope="col">Refrigerado</th>
-				<th scope="col">Peso Total</th>
-				<th scope="col">Volumen Total</th>
+				<th scope="col">Peso Total (kg)</th>
+				<th scope="col">Volumen Total (m2)</th>
 				<th scope="col">Fecha Llegada</th>
-				<th scope="col">Acciones</th>
-
+				<th scope="col">Transportar</th>
+				<th scope="col">Finalizar Transporte</th>
+				<th scope="col">Cancelar Transporte</th>
 
 			  </tr>
 			</thead>
 			<tbody>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><button type="button" class="btn btn-info">Concursar</button></td>
+				<tr th:each="detalleProceso : ${listaProductosProceso}">
+					<td><span th:text="${detalleProceso.idProceso}"></span></td>
+					<td><span th:text="${detalleProceso.nombreProducto}"></span></td>
+					<td><span th:text="${detalleProceso.glosaRefrigerado}"></span></td>
+					<td><span th:text="${detalleProceso.pesoProducto}"></span></td>
+					<td><span th:text="${detalleProceso.volumenProducto}"></span></td>
+					<td><span th:text="${detalleProceso.fechaLlegada}"></span></td>
+					<td><button type="button" class="btn btn-primary" th:data-idProceso="${detalleProceso.idProceso}" data-toggle="modal" data-target="#modalConfirmacionTransporte" onclick="actualizaEnTransporte(this.getAttribute('data-idProceso'))">
+						Transportar
+					  </button></td>
+					<td><button type="button" class="btn btn-success" data-dismiss="modal">Transporte Completado</button>
+					<td><button type="button" class="btn btn-danger">Transporte Cancelado</button></td>
+				</td>
 				</tr>
-			  </tr>
 			</tbody>
 		  </table>
 	</div>
 </body>
+<div class="modal fade" id="modalConfirmacionTransporte" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionTransporte" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Transporte</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		  <center>Transporte en Proceso...</center>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-danger" data-dismiss="modal">Transporte Cancelado</button>
+		  <button type="button" class="btn btn-success">Transporte Completado</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 	<script th:src="@{/js/lib/jquery-3.2.1.min.js}" type="text/javascript"></script>
 	<script th:src="@{/js/lib/jquery-ui.js}" type="text/javascript"></script>
-
+	<script th:src="@{/js/proceso/actualizaEstadoProceso.js}"} type="text/javascript"></script> 
 </html>

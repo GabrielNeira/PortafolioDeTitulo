@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.feriantes.portafolio.conf.Conexion;
 import com.feriantes.portafolio.to.DetalleProcesoTO;
 import com.feriantes.portafolio.to.ProcesoTO;
+import com.feriantes.portafolio.to.enums.EnumEstados;
 
 import oracle.jdbc.OracleTypes;
 
@@ -34,6 +35,7 @@ public class ProcesoDao {
 					ProcesoTO proceso  = new ProcesoTO();
 					proceso.setIdProceso(rs.getInt("id_proceso"));
 					proceso.setEstadoProceso(rs.getInt("estado"));
+					proceso.setGlosaEstado(EnumEstados.obtenerEstado(proceso.getEstadoProceso()).name());
 					proceso.setNombreProceso(rs.getString("nombre_proceso"));
 					proceso.setFechaInicio(rs.getString("fecha_inicio"));
 					proceso.setFechaTermino(rs.getString("fecha_termino"));
@@ -56,7 +58,7 @@ public ProcesoTO obteneProcesoId(int id) throws SQLException {
 			
 			while (rs.next()) {
 				proceso.setIdProceso(rs.getInt("id_proceso"));
-				proceso.setEstadoProceso(rs.getInt("estado"));
+				proceso.setGlosaEstado(EnumEstados.obtenerEstado(proceso.getEstadoProceso()).name());
 				proceso.setNombreProceso(rs.getString("nombre_proceso"));
 				proceso.setFechaInicio(rs.getString("fecha_inicio"));
 				proceso.setFechaTermino(rs.getString("fecha_termino"));
@@ -82,6 +84,8 @@ public List<DetalleProcesoTO> obtenerDetalleProceso(int id) throws SQLException 
 				det.setCantidad(rs.getInt("cantidad"));
 				det.setTipoVenta(rs.getInt("tipo_venta"));
 				det.setIdProducto(rs.getInt("id_producto"));
+				det.setNombreProducto(rs.getString("nombre"));
+				det.setGlosaTipoVenta(det.getTipoVenta()==1?"NACIONAL":"EXPORTACION");
 				detalleProceso.add(det);
 			}
 		}
@@ -123,7 +127,7 @@ public void editarProceso(ProcesoTO proceso) throws SQLException {
 			call.setString("p_nombre", proceso.getNombreProceso());
 			call.setString("p_fechaini", proceso.getFechaInicio());
 			call.setString("p_fechafin", proceso.getFechaTermino());
-		call.execute ();
+			call.execute ();
 	}
 }
 
@@ -132,6 +136,15 @@ public void eliminaProceso(int idProceso) throws SQLException {
 	CallableStatement  call = con.prepareCall ("CALL ELIMINAR_PROCESO(?)");) {
 		call.setInt("p_id", idProceso);
 		call.execute ();
+	}
+}
+
+public void actualizaEstadoProceso(int idProceso, int idEstado) throws SQLException {
+	try (Connection con = conexion.getConnection();
+			CallableStatement  call = con.prepareCall ("CALL ACTUALIZA_ESTADO_PROCESO(?,?)");) {
+			call.setInt("p_id_proceso", idProceso);
+			call.setInt("p_nuevo_estado", idEstado);
+			call.execute ();
 	}
 }
 

@@ -131,11 +131,70 @@ public List<ProductoTO> obtenerListaProductosPorMail(String email) throws SQLExc
 				producto.setRefrigeracion(rs.getInt("refrigeracion"));
 				producto.setFechaLlegada(rs.getString("fecha_llegada"));
 				producto.setCodProductor(rs.getInt("codigo_productor"));
+				
 				listaRetorno.add(producto);
 			}
 		}
 	}
 	return listaRetorno;
+}
+
+
+public List<ProductoTO> obtenerProductosIdProceso(int idProceso) throws SQLException {
+	List<ProductoTO> productosProceso = new ArrayList <ProductoTO>();
+	try (Connection con = conexion.getConnection();
+			CallableStatement  call = con.prepareCall ("CALL OBTIENE_PRODUCTOS_PROCESO(?,?)");) {
+		call.setInt("p_id_proceso", idProceso);
+		call.registerOutParameter ("p_resultado", OracleTypes.CURSOR);
+		call.execute ();
+		try (ResultSet rs = (ResultSet)call.getObject ("p_resultado");) {  
+			
+			while (rs.next()) { 	
+				ProductoTO producto =new ProductoTO();
+				producto.setIdProducto(rs.getInt("id_producto"));
+				producto.setNombreProducto(rs.getString("nombre"));
+				producto.setCantidadProducto(rs.getInt("cantidad"));
+				producto.setPesoProducto(rs.getInt("peso"));
+				producto.setVolumenProducto(rs.getInt("volumen"));
+				producto.setEstadoProducto(rs.getInt("estado"));
+				producto.setRefrigeracion(rs.getInt("refrigeracion"));
+				producto.setFechaLlegada(rs.getString("fecha_llegada"));
+				producto.setCodProductor(rs.getInt("codigo_productor"));
+				productosProceso.add(producto);
+			}
+		}
+
+	}
+	return productosProceso;
+}
+
+public List<ProductoTO> obtenerProductosProcesos() throws SQLException {
+	List<ProductoTO> productosProceso = new ArrayList <ProductoTO>();
+	try (Connection con = conexion.getConnection();
+			CallableStatement  call = con.prepareCall ("CALL OBTIENE_PRODUCTOS_TRANSPORTISTA(?)");) {
+		call.registerOutParameter ("p_resultado", OracleTypes.CURSOR);
+		call.execute ();
+		try (ResultSet rs = (ResultSet)call.getObject ("p_resultado");) {  
+			
+			while (rs.next()) { 	
+				ProductoTO producto =new ProductoTO();
+				producto.setIdProducto(rs.getInt("id_producto"));
+				producto.setNombreProducto(rs.getString("nombre"));
+				producto.setCantidadProducto(rs.getInt("cantidad"));
+				producto.setPesoProducto(rs.getInt("peso"));
+				producto.setVolumenProducto(rs.getInt("volumen"));
+				producto.setEstadoProducto(rs.getInt("estado"));
+				producto.setRefrigeracion(rs.getInt("refrigeracion"));
+				producto.setFechaLlegada(rs.getString("fecha_llegada"));
+				producto.setCodProductor(rs.getInt("codigo_productor"));
+				producto.setIdProceso(rs.getInt("id_proceso"));
+				producto.setGlosaRefrigerado(producto.getRefrigeracion()==1?"SI":"NO");
+				productosProceso.add(producto);
+			}
+		}
+
+	}
+	return productosProceso;
 }
 
 }

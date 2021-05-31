@@ -36,6 +36,7 @@ public class ContratoDao {
 						contrato.setEstadoContrato(rs.getInt("estado"));
 						contrato.setFechaGeneracion(rs.getString("fecha_generacion"));
 						contrato.setFechaVencimiento(rs.getString("fecha_vencimiento"));
+						contrato.setGlosaEstado(contrato.getEstadoContrato()==1?"VIGENTE":"CADUCADO");
 						listaRetorno.add(contrato);
 					}
 				}

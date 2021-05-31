@@ -9,9 +9,21 @@ public class DetalleProcesoTO {
     private int tipoVenta;
     private int idProducto;
     private String funcion;
+    private String nombreProducto;
+    private String glosaTipoVenta;
 
-    
-    
+    public String getGlosaTipoVenta() {
+        return glosaTipoVenta;
+    }
+    public void setGlosaTipoVenta(String glosaTipoVenta) {
+        this.glosaTipoVenta = glosaTipoVenta;
+    }
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
     public int getIdDetalleProceso() {
         return idDetalleProceso;
     }

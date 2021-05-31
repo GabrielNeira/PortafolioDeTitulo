@@ -3,6 +3,8 @@ package com.feriantes.portafolio;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,15 +28,16 @@ public class administracionProcesosController {
 	private ProcesoDao ProcesoDao;
 
     @GetMapping()
-    public String administracionProcesos(Model model){
+    public String administracionProcesos(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	cargaProceso(model);
         model.addAttribute("procesoCrear", new ProcesoTO());
+        PerfilesService.seteaPerfil(model, userDetails);
         return "/administracionProcesos";
     }
 
         
     @GetMapping("/{idProceso}")
-    public String buscarIdProceso(Model model, @PathVariable int idProceso){
+    public String buscarIdProceso(Model model, @PathVariable int idProceso,@AuthenticationPrincipal UserDetails userDetails){
     	ProcesoTO proceso = null;
     	try {
     		proceso = ProcesoDao.obteneProcesoId(idProceso);
@@ -46,6 +49,7 @@ public class administracionProcesosController {
     	
     	model.addAttribute("procesoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
+    	PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionProcesos";
     }
 	@PostMapping()
@@ -78,7 +82,7 @@ public class administracionProcesosController {
     }
 
 	@DeleteMapping("/{idProceso}")
-    public String borrarContrato(Model model, @PathVariable int idProceso){
+    public String borrarContrato(Model model, @PathVariable int idProceso,@AuthenticationPrincipal UserDetails userDetails){
     	try {
     		ProcesoDao.eliminaProceso(idProceso);
 		} catch (SQLException e) {
@@ -90,6 +94,7 @@ public class administracionProcesosController {
     	model.addAttribute("procesoCrear",new ProcesoTO());
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
+		PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionProcesos";
     }
     

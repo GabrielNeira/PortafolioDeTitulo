@@ -7,6 +7,8 @@ import com.feriantes.portafolio.dao.ProcesoDao;
 import com.feriantes.portafolio.to.ProcesoTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ public class homeProductorController {
 	private ProcesoDao ProcesoDao;
 
    @GetMapping("/getById/{idProceso}")
-    public String home(Model model, @PathVariable Integer idProceso){
+    public String home(Model model, @PathVariable Integer idProceso,@AuthenticationPrincipal UserDetails userDetails){
        ProcesoTO proceso=null;
 		try {
 			proceso = ProcesoDao.obteneProcesoId(idProceso);
@@ -30,11 +32,12 @@ public class homeProductorController {
 			e.printStackTrace();
 		}
 		model.addAttribute("proceso",proceso);
+		PerfilesService.seteaPerfil(model, userDetails);
         return "/homeProductor";
     }
 
     @GetMapping("")
-    public String llenarTabla(Model model){
+    public String llenarTabla(Model model,@AuthenticationPrincipal UserDetails userDetails){
         List<ProcesoTO> procesos=null;
 		try {
 			procesos = ProcesoDao.obtenerProceso();
@@ -43,6 +46,7 @@ public class homeProductorController {
 			e.printStackTrace();
 		}
 		model.addAttribute("procesos",procesos);
+		PerfilesService.seteaPerfil(model, userDetails);
         return "/homeProductor";
     }
 

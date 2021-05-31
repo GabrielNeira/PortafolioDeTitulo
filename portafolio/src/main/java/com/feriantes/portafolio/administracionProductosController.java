@@ -8,6 +8,7 @@ import com.feriantes.portafolio.to.ProductoTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,15 +26,16 @@ public class administracionProductosController {
 	private ProductoDao ProductoDao;
 
     @GetMapping()
-    public String administracionProductos(Model model){
+    public String administracionProductos(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	cargaProducto(model);
         model.addAttribute("productoCrear", new ProductoTO());
+        PerfilesService.seteaPerfil(model, userDetails);
         return "/administracionProductos";
     }
 
         
     @GetMapping("/{idProducto}")
-    public String buscarIdProducto(Model model, @PathVariable int idProducto, @AuthenticationPrincipal String user){
+    public String buscarIdProducto(Model model, @PathVariable int idProducto, @AuthenticationPrincipal UserDetails userDetails){
     	ProductoTO proceso = null;
     	try {
     		proceso = ProductoDao.obtenerProductoId(idProducto);
@@ -45,11 +47,12 @@ public class administracionProductosController {
     	
     	model.addAttribute("productoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
+    	PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionProductos";
     }
 	@PostMapping()
     public String crearProducto(Model model ,
-    		@ModelAttribute(value = "productoCrear") ProductoTO productoCrear){
+    		@ModelAttribute(value = "productoCrear") ProductoTO productoCrear,@AuthenticationPrincipal UserDetails userDetails){
     	try {
     		if(productoCrear.getFuncion().equals("actualizarProducto"))
             ProductoDao.editarProducto(productoCrear);
@@ -60,6 +63,7 @@ public class administracionProductosController {
 		}
     	cargaProducto(model);
     	model.addAttribute("productoCrear", new ProductoTO());
+    	PerfilesService.seteaPerfil(model, userDetails);
     	return "redirect:/administracionProductos";
     }
 
@@ -77,7 +81,7 @@ public class administracionProductosController {
     }
 
 	@DeleteMapping("/{idProducto}")
-    public String borrarProducto(Model model, @PathVariable int idProducto){
+    public String borrarProducto(Model model, @PathVariable int idProducto,@AuthenticationPrincipal UserDetails userDetails){
     	try {
     		ProductoDao.eliminaProducto(idProducto);
 		} catch (SQLException e) {
@@ -89,6 +93,7 @@ public class administracionProductosController {
     	model.addAttribute("productoCrear",new ProductoTO());
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
+		PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionProductos";
     }
 	

@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,14 +26,15 @@ public class administracionUsuariosController {
 	private UsuarioDao usuarioDao;
 	
     @GetMapping()
-    public String administracionUsuarios(Model model){
+    public String administracionUsuarios(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	cargaUsuarios(model);
         model.addAttribute("usuarioCrear", new UsuarioTO());
+        PerfilesService.seteaPerfil(model, userDetails);
         return "/administracionUsuarios";
     }
     
     @GetMapping("/{idUsuario}")
-    public String buscarUsuarioIdUsuarios(Model model, @PathVariable int idUsuario){
+    public String buscarUsuarioIdUsuarios(Model model, @PathVariable int idUsuario,@AuthenticationPrincipal UserDetails userDetails){
     	UsuarioTO usuario = null;
     	try {
     		usuario = usuarioDao.obtenerUsuarioId(idUsuario);
@@ -43,6 +46,7 @@ public class administracionUsuariosController {
     	
     	model.addAttribute("usuarioCrear",usuario);
     	model.addAttribute("llamado","actualizar");
+    	PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionUsuarios";
     }
     
@@ -76,7 +80,7 @@ public class administracionUsuariosController {
     }
 
 	@DeleteMapping("/{idUsuario}")
-    public String borrarContrato(Model model, @PathVariable int idUsuario){
+    public String borrarContrato(Model model, @PathVariable int idUsuario ,@AuthenticationPrincipal UserDetails userDetails){
     	try {
     		usuarioDao.eliminaUsuario(idUsuario);
 		} catch (SQLException e) {
@@ -88,6 +92,7 @@ public class administracionUsuariosController {
     	model.addAttribute("usuarioCrear",new UsuarioTO());
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
+		PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionUsuarios";
     }
 

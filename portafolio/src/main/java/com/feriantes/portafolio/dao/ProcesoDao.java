@@ -58,6 +58,7 @@ public ProcesoTO obteneProcesoId(int id) throws SQLException {
 			
 			while (rs.next()) {
 				proceso.setIdProceso(rs.getInt("id_proceso"));
+				proceso.setEstadoProceso(rs.getInt("estado"));
 				proceso.setGlosaEstado(EnumEstados.obtenerEstado(proceso.getEstadoProceso()).name());
 				proceso.setNombreProceso(rs.getString("nombre_proceso"));
 				proceso.setFechaInicio(rs.getString("fecha_inicio"));

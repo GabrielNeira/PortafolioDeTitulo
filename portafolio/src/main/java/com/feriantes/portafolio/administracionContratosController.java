@@ -7,6 +7,8 @@ import com.feriantes.portafolio.dao.ContratoDao;
 import com.feriantes.portafolio.to.ContratoTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,15 +26,16 @@ public class administracionContratosController {
 	private ContratoDao ContratoDao;
 
     @GetMapping()
-    public String administracionContratos(Model model){
+    public String administracionContratos(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	cargaContrato(model);
+    	PerfilesService.seteaPerfil(model, userDetails);
         model.addAttribute("contratoCrear", new ContratoTO());
         return "/administracionContratos";
     }
 
         
     @GetMapping("/{idContrato}")
-    public String buscarIdContrato(Model model, @PathVariable int idContrato){
+    public String buscarIdContrato(Model model, @PathVariable int idContrato,@AuthenticationPrincipal UserDetails userDetails){
     	ContratoTO proceso = null;
     	try {
     		proceso = ContratoDao.obtenerContratoId(idContrato);
@@ -44,11 +47,12 @@ public class administracionContratosController {
     	
     	model.addAttribute("contratoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
+    	PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionContratos";
     }
 	@PostMapping()
     public String crearContrato(Model model ,
-    		@ModelAttribute(value = "contratoCrear") ContratoTO contratoCrear){
+    		@ModelAttribute(value = "contratoCrear") ContratoTO contratoCrear,@AuthenticationPrincipal UserDetails userDetails){
     	try {
     		if(contratoCrear.getFuncion().equals("actualizarContrato"))
             ContratoDao.editaContrato(contratoCrear);
@@ -59,6 +63,7 @@ public class administracionContratosController {
 		}
     	cargaContrato(model);
     	model.addAttribute("contratoCrear", new ContratoTO());
+    	PerfilesService.seteaPerfil(model, userDetails);
     	return "redirect:/administracionContratos";
     }
 
@@ -76,7 +81,7 @@ public class administracionContratosController {
     }
 
 	@DeleteMapping("/{idContrato}")
-    public String borrarContrato(Model model, @PathVariable int idContrato){
+    public String borrarContrato(Model model, @PathVariable int idContrato,@AuthenticationPrincipal UserDetails userDetails){
     	try {
     		ContratoDao.eliminaContrato(idContrato);
 		} catch (SQLException e) {
@@ -88,6 +93,7 @@ public class administracionContratosController {
     	model.addAttribute("contratoCrear",new ContratoTO());
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
+		PerfilesService.seteaPerfil(model, userDetails);
     	return "/administracionContratos";
     }
 

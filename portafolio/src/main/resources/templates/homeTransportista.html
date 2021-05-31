@@ -49,6 +49,7 @@
 			<thead>
 			  <tr>
 				<th scope="col">ID Proceso</th>
+				<th scope="col">Estado Proceso</th>
 				<th scope="col">Nombre Producto</th>
 				<th scope="col">Refrigerado</th>
 				<th scope="col">Peso Total (kg)</th>
@@ -63,17 +64,18 @@
 			<tbody>
 				<tr th:each="detalleProceso : ${listaProductosProceso}">
 					<td><span th:text="${detalleProceso.idProceso}"></span></td>
+					<td><span th:text="${detalleProceso.glosaEstado}"></span></td>
 					<td><span th:text="${detalleProceso.nombreProducto}"></span></td>
 					<td><span th:text="${detalleProceso.glosaRefrigerado}"></span></td>
 					<td><span th:text="${detalleProceso.pesoProducto}"></span></td>
 					<td><span th:text="${detalleProceso.volumenProducto}"></span></td>
 					<td><span th:text="${detalleProceso.fechaLlegada}"></span></td>
-					<td><button type="button" class="btn btn-primary" th:data-idProceso="${detalleProceso.idProceso}" data-toggle="modal" data-target="#modalConfirmacionTransporte" onclick="actualizaEnTransporte(this.getAttribute('data-idProceso'))">
+					<td>
+					<button type="button" class="btn btn-primary" th:disabled="${detalleProceso.estadoProceso >= 4}" th:data-idProceso="${detalleProceso.idProceso}"  onclick="actualizaProceso(this.getAttribute('data-idProceso'),4)">
 						Transportar
 					  </button></td>
-					<td><button type="button" class="btn btn-success" data-dismiss="modal">Transporte Completado</button>
-					<td><button type="button" class="btn btn-danger">Transporte Cancelado</button></td>
-				</td>
+					<td><button type="button" class="btn btn-success" th:disabled="${detalleProceso.estadoProceso != 4 || detalleProceso.estadoProceso == 7}" th:data-idProceso="${detalleProceso.idProceso}"  onclick="actualizaProceso(this.getAttribute('data-idProceso'),5)">Transporte Completado</button>
+					<td><button type="button" class="btn btn-danger" th:disabled="${detalleProceso.estadoProceso != 4 ||  detalleProceso.estadoProceso == 5}" th:data-idProceso="${detalleProceso.idProceso}"  onclick="actualizaProceso(this.getAttribute('data-idProceso'),7)"> Transporte Cancelado</button></td>
 				</tr>
 			</tbody>
 		  </table>

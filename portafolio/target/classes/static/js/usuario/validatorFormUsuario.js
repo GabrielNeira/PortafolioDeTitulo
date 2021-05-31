@@ -27,6 +27,8 @@ $("#formUsuario").validate({
         tipo: {
         required: "Debe ingresar un Tipo"
         }
+        
+        
   },
    submitHandler: function(form) {
       form.submit();

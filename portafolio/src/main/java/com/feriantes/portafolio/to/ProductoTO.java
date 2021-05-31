@@ -3,6 +3,7 @@ package com.feriantes.portafolio.to;
 public class ProductoTO {
 
 	private int idProducto;
+	private int estadoProceso;
 	private String nombreProducto;
 	private int cantidadProducto;
 	private int pesoProducto;
@@ -14,6 +15,7 @@ public class ProductoTO {
 	private String funcion;
 	private int idProceso;
 	private String glosaRefrigerado;
+	private String glosaEstado;
 	
 	
 	
@@ -89,11 +91,18 @@ public class ProductoTO {
 	public void setFuncion(String funcion) {
 		this.funcion = funcion;
 	}
-
+	public int getEstadoProceso() {
+		return estadoProceso;
+	}
+	public void setEstadoProceso(int estadoProceso) {
+		this.estadoProceso = estadoProceso;
+	}
+	public String getGlosaEstado() {
+		return glosaEstado;
+	}
+	public void setGlosaEstado(String glosaEstado) {
+		this.glosaEstado = glosaEstado;
+	}
 	
-
 	
-	
-
-
 }

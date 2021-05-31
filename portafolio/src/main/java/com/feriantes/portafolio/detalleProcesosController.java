@@ -51,6 +51,8 @@ public class detalleProcesosController {
 		
 		model.addAttribute("listaProductosUsuario", listaRetorno);
 		model.addAttribute("proceso",proceso);
+		PerfilesService.seteaPerfil(model, userDetails);
+		
         return "/detalleProcesos";
     }
 

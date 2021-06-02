@@ -1,9 +1,11 @@
-function actualizaProceso(idProceso, estado){
+function actualizaProceso(idProceso, estado) {
     $.ajax({
-        type : "GET",
-        url : "./detalleProcesosrest/cambiaEstado/"+idProceso+"/"+estado,
-        done : function(data) {
-        alert("proceso Actualizado");
+        type: "GET",
+        url: "./detalleProcesosrest/cambiaEstado/" + idProceso + "/" + estado,
+        success: function (data) {
+            alert("proceso Actualizado");
+            window.location.reload();
         }
     });
 }
+

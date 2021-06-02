@@ -17,13 +17,13 @@
 			<div class="form-group row">
 				<label class="col-lg-3 col-form-label form-control-label">Fecha Inicio</label>
 				<div class="col-lg-9">
-					<input class="form-control" type="text" th:field="*{fechaInicio}">
+					<input class="form-control" type="date"  min='2021-01-06' th:field="*{fechaInicio}">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-lg-3 col-form-label form-control-label">Fecha Término</label>
 				<div class="col-lg-9">
-					<input class="form-control" type="text" th:field="*{fechaTermino}">
+					<input class="form-control" type="date" th:field="*{fechaTermino}">
 				</div>
 			</div>
 			<div class="form-group row">

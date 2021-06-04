@@ -9,7 +9,7 @@ public class nuevoProcesoController {
     @GetMapping("/nuevoProceso")
     public String nuevoProceso(Model model){
         
-        return "/nuevoProceso";
+        return "nuevoProceso";
     }
     
 }

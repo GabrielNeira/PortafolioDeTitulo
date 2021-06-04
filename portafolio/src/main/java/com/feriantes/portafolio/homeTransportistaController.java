@@ -41,6 +41,6 @@ public class homeTransportistaController {
 			e.printStackTrace();
 		}
 		model.addAttribute("listaProductosProceso", listaProductos);
-		return "/homeTransportista";
+		return "homeTransportista";
 	}
 }

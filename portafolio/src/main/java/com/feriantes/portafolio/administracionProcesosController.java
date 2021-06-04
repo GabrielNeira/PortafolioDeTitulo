@@ -32,7 +32,7 @@ public class administracionProcesosController {
     	cargaProceso(model);
         model.addAttribute("procesoCrear", new ProcesoTO());
         PerfilesService.seteaPerfil(model, userDetails);
-        return "/administracionProcesos";
+        return "administracionProcesos";
     }
 
         
@@ -50,7 +50,7 @@ public class administracionProcesosController {
     	model.addAttribute("procesoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
     	PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionProcesos";
+    	return "administracionProcesos";
     }
 	@PostMapping()
     public String crearProceso(Model model ,
@@ -65,7 +65,7 @@ public class administracionProcesosController {
 		}
     	cargaProceso(model);
     	model.addAttribute("procesoCrear", new ProcesoTO());
-    	return "redirect:/administracionProcesos";
+    	return "redirect:administracionProcesos";
     }
 
     private void cargaProceso(Model model ) {
@@ -95,7 +95,7 @@ public class administracionProcesosController {
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
 		PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionProcesos";
+    	return "administracionProcesos";
     }
     
 

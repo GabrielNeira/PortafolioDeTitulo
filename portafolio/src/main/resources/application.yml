@@ -19,6 +19,7 @@ spring:
     enabled: true
     suffix: .html
     cache: false
+    prefix: classpath:/templates/
     servlet:
       content-type: text/html
   datasource:

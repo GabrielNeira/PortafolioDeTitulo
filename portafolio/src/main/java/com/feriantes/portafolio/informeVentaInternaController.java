@@ -39,7 +39,7 @@ public class informeVentaInternaController {
     @GetMapping()
     public String nuevoUsuario(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	PerfilesService.seteaPerfil(model, userDetails);
-        return "/informeVentaInterna";
+        return "informeVentaInterna";
     }
 	
     @GetMapping("/Interna")

@@ -30,7 +30,7 @@ public class administracionContratosController {
     	cargaContrato(model);
     	PerfilesService.seteaPerfil(model, userDetails);
         model.addAttribute("contratoCrear", new ContratoTO());
-        return "/administracionContratos";
+        return "administracionContratos";
     }
 
         
@@ -48,7 +48,7 @@ public class administracionContratosController {
     	model.addAttribute("contratoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
     	PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionContratos";
+    	return "administracionContratos";
     }
 	@PostMapping()
     public String crearContrato(Model model ,
@@ -94,7 +94,7 @@ public class administracionContratosController {
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
 		PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionContratos";
+    	return "administracionContratos";
     }
 
 }

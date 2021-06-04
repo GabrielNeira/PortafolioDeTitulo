@@ -10,7 +10,7 @@ public class loginController {
     @GetMapping(path = {"/", "/login"})
     public String welcome(Model model){
         
-        return "/login";
+        return "login";
     }
 
 }

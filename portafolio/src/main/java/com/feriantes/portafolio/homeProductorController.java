@@ -33,7 +33,7 @@ public class homeProductorController {
 		}
 		model.addAttribute("proceso",proceso);
 		PerfilesService.seteaPerfil(model, userDetails);
-        return "/homeProductor";
+        return "homeProductor";
     }
 
     @GetMapping("")
@@ -47,7 +47,7 @@ public class homeProductorController {
 		}
 		model.addAttribute("procesos",procesos);
 		PerfilesService.seteaPerfil(model, userDetails);
-        return "/homeProductor";
+        return "homeProductor";
     }
 
 

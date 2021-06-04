@@ -10,7 +10,7 @@ public class nuevoContratoController {
     @GetMapping("/nuevoContrato")
     public String nuevoContrato(Model model){
         
-        return "/nuevoContrato";
+        return "nuevoContrato";
 
 }
 }

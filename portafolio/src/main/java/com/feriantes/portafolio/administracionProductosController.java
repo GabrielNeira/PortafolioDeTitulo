@@ -30,7 +30,7 @@ public class administracionProductosController {
     	cargaProducto(model);
         model.addAttribute("productoCrear", new ProductoTO());
         PerfilesService.seteaPerfil(model, userDetails);
-        return "/administracionProductos";
+        return "administracionProductos";
     }
 
         
@@ -48,7 +48,7 @@ public class administracionProductosController {
     	model.addAttribute("productoCrear",proceso);
     	model.addAttribute("llamado","actualizar");
     	PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionProductos";
+    	return "administracionProductos";
     }
 	@PostMapping()
     public String crearProducto(Model model ,
@@ -94,7 +94,7 @@ public class administracionProductosController {
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
 		PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionProductos";
+    	return "administracionProductos";
     }
 	
 }

@@ -10,6 +10,6 @@ public class nuevoUsuarioController {
     @GetMapping("/nuevoUsuario")
     public String nuevoUsuario(Model model){
         
-        return "/nuevoUsuario";
+        return "nuevoUsuario";
     }
 }

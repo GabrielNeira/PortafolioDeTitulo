@@ -30,7 +30,7 @@ public class administracionUsuariosController {
     	cargaUsuarios(model);
         model.addAttribute("usuarioCrear", new UsuarioTO());
         PerfilesService.seteaPerfil(model, userDetails);
-        return "/administracionUsuarios";
+        return "administracionUsuarios";
     }
     
     @GetMapping("/{idUsuario}")
@@ -47,7 +47,7 @@ public class administracionUsuariosController {
     	model.addAttribute("usuarioCrear",usuario);
     	model.addAttribute("llamado","actualizar");
     	PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionUsuarios";
+    	return "administracionUsuarios";
     }
     
     @PostMapping()
@@ -93,7 +93,7 @@ public class administracionUsuariosController {
     	model.addAttribute("llamado","actualizar");
 		model.addAttribute("eliminado",true);
 		PerfilesService.seteaPerfil(model, userDetails);
-    	return "/administracionUsuarios";
+    	return "administracionUsuarios";
     }
 
 	

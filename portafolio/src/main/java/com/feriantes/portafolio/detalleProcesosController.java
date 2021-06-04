@@ -53,7 +53,7 @@ public class detalleProcesosController {
 		model.addAttribute("proceso",proceso);
 		PerfilesService.seteaPerfil(model, userDetails);
 		
-        return "/detalleProcesos";
+        return "detalleProcesos";
     }
 
 }

@@ -26,6 +26,8 @@ public class administracionProcesosController {
 
     @Autowired
 	private ProcesoDao ProcesoDao;
+    @Autowired
+    private PerfilesService PerfilesService;
 
     @GetMapping()
     public String administracionProcesos(Model model,@AuthenticationPrincipal UserDetails userDetails){

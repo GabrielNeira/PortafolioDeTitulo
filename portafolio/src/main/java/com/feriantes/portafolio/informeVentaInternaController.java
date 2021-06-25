@@ -33,7 +33,8 @@ public class informeVentaInternaController {
 	@Autowired
 	private ProcesoDao ProcesoDao;
 	
-	  
+	@Autowired
+    private PerfilesService PerfilesService;
     @GetMapping()
     public String nuevoUsuario(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	PerfilesService.seteaPerfil(model, userDetails);

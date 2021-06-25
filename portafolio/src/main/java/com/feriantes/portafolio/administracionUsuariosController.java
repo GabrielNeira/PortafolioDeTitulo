@@ -25,6 +25,9 @@ public class administracionUsuariosController {
 	@Autowired
 	private UsuarioDao usuarioDao;
 	
+	@Autowired
+    private PerfilesService PerfilesService;
+	
     @GetMapping()
     public String administracionUsuarios(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	cargaUsuarios(model);

@@ -24,6 +24,9 @@ public class administracionContratosController {
 
     @Autowired
 	private ContratoDao ContratoDao;
+    
+    @Autowired
+    private PerfilesService PerfilesService;
 
     @GetMapping()
     public String administracionContratos(Model model,@AuthenticationPrincipal UserDetails userDetails){

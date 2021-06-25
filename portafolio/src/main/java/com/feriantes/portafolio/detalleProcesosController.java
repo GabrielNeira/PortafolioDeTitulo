@@ -30,7 +30,9 @@ public class detalleProcesosController {
     @Autowired
 	private ProductoDao ProductoDao;
 
-
+    @Autowired
+    private PerfilesService PerfilesService;
+    
    @GetMapping("/{idProceso}")
     public String home(Model model, @PathVariable Integer idProceso,  @AuthenticationPrincipal UserDetails userDetails){
        ProcesoTO proceso=null;

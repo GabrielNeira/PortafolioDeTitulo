@@ -21,7 +21,8 @@ public class homeProductorController {
     
 	@Autowired
 	private ProcesoDao ProcesoDao;
-
+	@Autowired
+    private PerfilesService PerfilesService;
    @GetMapping("/getById/{idProceso}")
     public String home(Model model, @PathVariable Integer idProceso,@AuthenticationPrincipal UserDetails userDetails){
        ProcesoTO proceso=null;

@@ -24,6 +24,8 @@ public class administracionProductosController {
 
     @Autowired
 	private ProductoDao ProductoDao;
+    @Autowired
+    private PerfilesService PerfilesService;
 
     @GetMapping()
     public String administracionProductos(Model model,@AuthenticationPrincipal UserDetails userDetails){

@@ -1,6 +1,4 @@
 package com.feriantes.portafolio;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -39,7 +37,7 @@ public class informeVentaInternaController {
     @GetMapping()
     public String nuevoUsuario(Model model,@AuthenticationPrincipal UserDetails userDetails){
     	PerfilesService.seteaPerfil(model, userDetails);
-        return "informeVentaInterna";
+        return "/informeVentaInterna";
     }
 	
     @GetMapping("/Interna")

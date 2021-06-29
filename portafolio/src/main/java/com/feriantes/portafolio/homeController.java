@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.feriantes.portafolio.dao.UsuarioDao;
-
 @Controller
 public class homeController {
 	@Autowired

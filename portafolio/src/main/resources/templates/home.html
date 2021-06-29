@@ -41,7 +41,7 @@
 <body style="background-image: url('./img/fondoAdmin.jpg');">
 	
 <div th:replace="fragments/menu :: menu "></div>
-<h1 style="background-color: aquamarine;">Bienvenido</h1>
+<h1 style="background-color: aquamarine;">Bienvenido <span th:text="${nombreUsuario}"></span>  </h1>
 <footer>
 	<div th:replace="fragments/footer :: footer "></div>
 </footer>

@@ -54,11 +54,11 @@
 	<div th:replace="fragments/menu :: menu "></div>
 	<div class="card  p-3 border shadow">
 		<div class="row">
-			<div class="col-2 d-flex flex-row">
+			<div class="col-6 d-flex flex-row">
 				<div class="p-2"></div>
 				<div>
 					<h2>
-						<strong>Detalle Proceso</strong>
+						<strong>Información General del Proceso</strong>
 					</h2>
 				</div>
 			</div>
@@ -67,47 +67,36 @@
 			<div class="col p-1">
 				<div class="form-group">
 					<label for="select1"><strong> Nombre Proceso: </strong> <span
-						th:text="${proceso.nombreProceso}"></span></label>
-				</div>
-
-			</div>
-		</div>
-		<div class="row px-4 ">
-			<div class="col p-1">
-				<div class="form-group">
+						th:text="${proceso.nombreProceso}"></span> || </label>
 					<label for="select1"><strong> Fecha Inicio: </strong> <span
-						th:text="${proceso.fechaInicio}"></span></label>
-				</div>
-
-			</div>
-		</div>
-		<div class="row px-4 ">
-			<div class="col p-1">
-				<div class="form-group">
+						th:text="${proceso.fechaInicio}"></span> || </label>
 					<label for="select1"><strong> Fecha Termino: </strong> <span
-						th:text="${proceso.fechaTermino}"></span></label>
-				</div>
-
-			</div>
-		</div>
-		<div class="row px-4 ">
-			<div class="col p-1">
-				<div class="form-group">
-					<td><button class="btn btn-primary">Comprar</button></td>
-
+						th:text="${proceso.fechaTermino}"></span> || </label>
+					<label for="select1"><strong> Fecha Termino: </strong> <span
+						th:text="${proceso.fechaTermino}"></span> || </label>
+					<label for="select1"><strong> Descripcion:</strong> 
+							<!-- <span th:text="${proceso.descirpcion}"></span> -->
+							|| </label>
+					<label for="select1"><strong> Precio Total:</strong> 
+							<!-- <span th:text="${proceso.descirpcion}"></span> -->
+					</label>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="espacioTabla">
 
-		<table class="table table-bordered table-striped text-center">
+	<div class="espacioTabla espacioTablaBajo">
+		<div class="text-center">
+			<h2>
+				<strong>Detalle del Proceso</strong>
+			</h2>
+		</div>
+		<table class="table table-bordered table-striped text-center ">
 			<thead>
 				<tr>
-					<th scope="col" style="width: 33%;">Nombre</th>
-					<th scope="col" style="width: 33%;">Cantidad</th>
-					<th scope="col" style="width: 33%;">Tipo Venta</th>
-
+					<th scope="col" >Nombre</th>
+					<th scope="col" >Cantidad</th>
+					<th scope="col" >Tipo de Producto</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -115,11 +104,17 @@
 					<td><span th:text="${item.nombreProducto}"></span></td>
 					<td><span th:text="${item.cantidad}"></span></td>
 					<td><span th:text="${item.glosaTipoVenta}"></span></td>
-
 				</tr>
-
 			</tbody>
 		</table>
+		<div class="row px-4 ">
+			<div class="col p-1">
+				<div class="form-group">
+					<td><button class="btn btn-success btn-lg btn-block btn-outline" href="#">Comprar</button></td>
+
+				</div>
+			</div>
+		</div>
 	</div>
 	<footer>
 		<div th:replace="fragments/footer :: footer "></div>

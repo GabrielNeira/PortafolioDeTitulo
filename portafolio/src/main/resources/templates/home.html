@@ -38,7 +38,11 @@
 	    } );
 	</script>
 </head>
-<body style="background-image: url('./img/fondoAdmin.jpg');">
+<body style="background-image: url('./img/fondoAdmin.jpg');no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;">
 	
 <div th:replace="fragments/menu :: menu "></div>
 <h1 style="background-color: aquamarine;">Bienvenido <span th:text="${nombreUsuario}"></span>  </h1>

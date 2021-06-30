@@ -82,67 +82,16 @@
 	  <h2 class="distanciaArriba text-center "><u>MIRA NUESTRAS OFERTAS</u></h2>
 
 	  <div class="fluid-container distanciaArriba espacioTablaBajo">
-		  <div class="row">
-			<div class="card col-md-4 bg-light border-dark mx-auto">
+		  <div class="row" th:each="key : ${procesos.values}">
+			<div class="card col-md-4 bg-light border-dark mx-auto" th:each="item : ${key}">
 				<div class="card-header text-center" >
-					<h5>Título Proceso Venta</h>
+					<h5 th:text="${item.nombreProceso}"></h5>
 				</div>
 				<div class="card-body text-center ">
-				<h5 class="card-title" style="color:green;">20% de Descuento. </h5>
-				<p class="card-text">Descripción</p>
+				<h5 class="card-title" th:text="${item.nombreProceso}" style="color:green;">20% de Descuento. </h5>
+				<p class="card-text"  th:text="${item.descripcion}" ></p>
 				<a href="#" class="btn btn-primary">Comprar Ahora</a>
-				</div>
-			</div>
-			<div class="card col-md-4 bg-light  border-dark mx-auto">
-				<div class="card-header text-center" >
-					<h5>Título Proceso Venta</h>
-				</div>
-				<div class="card-body text-center ">
-				<h5 class="card-title" style="color:green;">20% de Descuento. </h5>
-				<p class="card-text">Descripción</p>
-				<a href="#" class="btn btn-primary">Comprar Ahora</a>
-				</div>
-			</div>		
-			<div class="card col-md-4 bg-light border-dark mx-auto">
-				<div class="card-header text-center" >
-					<h5>Título Proceso Venta</h>
-				</div>
-				<div class="card-body text-center ">
-					<h5 class="card-title" style="color:green;">20% de Descuento. </h5>
-					<p class="card-text">Descripción</p>
-					<a href="#" class="btn btn-primary">Comprar Ahora</a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="card col-md-4 bg-light border-dark mx-auto">
-				<div class="card-header text-center" >
-					<h5>Título Proceso Venta</h>
-				</div>
-				<div class="card-body text-center ">
-				<h5 class="card-title" style="color:green;">20% de Descuento. </h5>
-				<p class="card-text">Descripción</p>
-				<a href="#" class="btn btn-primary">Comprar Ahora</a>
-				</div>
-			</div>
-			<div class="card col-md-4 bg-light  border-dark mx-auto">
-				<div class="card-header text-center" >
-					<h5>Título Proceso Venta</h>
-				</div>
-				<div class="card-body text-center ">
-				<h5 class="card-title" style="color:green;">20% de Descuento. </h5>
-				<p class="card-text">Descripción</p>
-				<a href="#" class="btn btn-primary">Comprar Ahora</a>
-				</div>
-			</div>		
-			<div class="card col-md-4 bg-light border-dark mx-auto">
-				<div class="card-header text-center" >
-					<h5>Título Proceso Venta</h>
-				</div>
-				<div class="card-body text-center ">
-					<h5 class="card-title" style="color:green;">20% de Descuento. </h5>
-					<p class="card-text">Descripción</p>
-					<a href="#" class="btn btn-primary">Comprar Ahora</a>
+				<a type="button" class="btn btn-primary" th:href="@{detalleProducto/{id}(id=${item.idProceso})}" >Ver Proceso</a>
 				</div>
 			</div>
 		</div>

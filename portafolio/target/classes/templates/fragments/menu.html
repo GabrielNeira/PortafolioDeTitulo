@@ -18,8 +18,6 @@
                   <a class="nav-link active" aria-current="page" th:if="${perfil == 4 }" th:href="@{/homeCliente}">Ver Ofertas</a>
                   <a class="nav-link active" aria-current="page" th:if="${perfil == 1 || perfil == 2 }" th:href="@{/homeProductor}">Ver Procesos </a>
                   <a class="nav-link active"  aria-current="page" th:if="${perfil == 8 || perfil == 3 }" th:href="@{/homeTransportista}">Ver Transportes Disponibles</a>
-                  <a class="nav-link active" aria-current="page" th:if="${perfil == 4 }" th:href="@{/detalleProducto}">Ver detalle</a>
-
 				</div>
 				<a type="button" class="btn btn-danger" th:href="@{/logout}" style="position:absolute; top:15; right:0;">Cerrar Sesión</a>
               </div>

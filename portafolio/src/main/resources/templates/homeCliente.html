@@ -88,10 +88,9 @@
 					<h5 th:text="${item.nombreProceso}"></h5>
 				</div>
 				<div class="card-body text-center ">
-				<h5 class="card-title" th:text="${item.nombreProceso}" style="color:green;">20% de Descuento. </h5>
+				<h5 class="card-title"style="color:green;">Revisa nuestros productos </h5>
 				<p class="card-text"  th:text="${item.descripcion}" ></p>
-				<a href="#" class="btn btn-primary">Comprar Ahora</a>
-				<a type="button" class="btn btn-primary" th:href="@{detalleProducto/{id}(id=${item.idProceso})}" >Ver Proceso</a>
+				<a type="button" class="btn btn-primary" th:href="@{detalleProducto/{id}(id=${item.idProceso})}" >Ver Oferta</a>
 				</div>
 			</div>
 		</div>

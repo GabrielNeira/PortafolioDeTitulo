@@ -44,4 +44,10 @@ public class detalleProductoController {
 		
         return "detalleProducto";
     }
+    
+    @GetMapping("/voucher")
+    public String home2(Model model,@AuthenticationPrincipal UserDetails userDetails){
+    	PerfilesService.seteaPerfil(model, userDetails);
+        return "voucher";
+    }
 }

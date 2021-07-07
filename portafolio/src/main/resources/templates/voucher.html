@@ -1,54 +1,176 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title></title>
-	
+
 	<!--JQUERY-->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	<!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	
+
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-	<script 
-		src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script 
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+
 	<!-- Los iconos tipo Solid de Fontawesome-->
-	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-		<link rel="stylesheet" type="text/css" href="static/css/user-form.css"
-	th:href="@{/css/detalleProductos.css}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	<link rel="stylesheet" type="text/css" href="static/css/user-form.css" th:href="@{/css/detalleProductos.css}">
 	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 	<script rel="stylesheet" href=""></script>
-	
+
 	<!-- Nuestro css-->
-	<link rel="stylesheet" type="text/css" href="static/css/user-form.css"
-		th:href="@{/css/user-form.css}">
+	<link rel="stylesheet" type="text/css" href="static/css/user-form.css" th:href="@{/css/user-form.css}">
 	<!-- DATA TABLE -->
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="./footer.css">
 
 
 	<script type="text/javascript">
-	    $(document).ready(function() {
-	        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
-	        $('#userList').DataTable();
-	    } );
+		$(document).ready(function () {
+			//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+			$('#userList').DataTable();
+		});
 	</script>
 </head>
-
+<style>@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+	body, h1, h2, h3, h4, h5, h6{
+	  font-family: 'Bree Serif', serif;
+	}
+	</style>
 <body>
-	<h1>asdasdsadsda</h1>
-</body>
+	<div class="fluid-container">
+	<div class="col-xs-6">
+		<h1><a href=""><img alt="" src="../img/logo-feriavirtual.png" / width="300"> </a></h1>
+	</div>
+	<div class="col-xs-6 text-right">
+		<h1>FACTURA</h1>
+		<h1><small>Factura #001</small></h1>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-5">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4><u>    ____De: <a href="#">Su Nombre</a></u></h4>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-xs-5 col-xs-offset-2 text-right">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4><u> Para : <a href="#">Nombre del Cliente___</a></u></h4>
+				</div>
+				<div class="panel-body">Dirección
+					detalles
+					más detalles</div>
+			</div>
+		</div>
+	</div>
+	<pre><!-- / fin de sección de datos del Cliente  -->
+	Detalles de la factura aquí
+</pre>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>
+					<h4>Noombre Producto</h4>
+				</th>
+				<th>
+					<h4>Cantidad</h4>
+				</th>
+				<th>
+					<h4>Precio</h4>
+				</th>
+				<th>
+					<h4>Sub-Total</h4>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Artículo</td>
+				<td><a href="#"> Título de su artículo aquí </a></td>
+				<td class=" text-right ">-</td>
+				<td class=" text-right ">200.00 €</td>
+				<td class=" text-right ">200.00 €</td>
+			</tr>
+			<tr>
+				<td>Plantilla de diseño</td>
+				<td><a href="#"> Detalles del proyecto aquí </a></td>
+				<td class="text-right">10</td>
+				<td class="text-right ">75.00 €</td>
+				<td class="text-right ">750.00 €</td>
+			</tr>
+			<tr>
+				<td>Desarrollo</td>
+				<td><a href="#"> Plugin WordPress </a></td>
+				<td class="text-right ">5</td>
+				<td class="text-right">50.00 €</td>
+				<td class="text-right">250.00 €</td>
+			</tr>
+		</tbody>
+	</table>
+	<pre>Sección Totales
+	</pre>
+	<div class="row text-right">
+		<div class="col-xs-3 col-xs-offset-7"><strong>
+				Sub Total:
+				Impuestos (IVA 21%):
+				Total:
+			</strong></div>
+		<div class="col-xs-2"><strong>
+				1,200.00 €
+				252.00 €
+				1,452.00 €
+			</strong></div>
+	</div>
+	<pre>Sección detalles de pago
+		<div class="row">
+			<div class = "col-xs-5">
+			datos bancarios
+			</div>
+			<div class="col-xs-7">
+			datos de contacto
+			</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+				<h4>Datos bancarios</h4>
+				</div>
+				<div class="panel-body">
+				 Su nombre
+				 Nombre del banco
+				 SWIFT: -------
+				 Número de cuenta: 12345678
+				 IBAN: ------</div>
+				</div>
+				</div>
+				<div class="span7">
+					<div class="panel panel-info">
+					<div class="panel-heading">
+					<h4> Datos de contacto </h4>
+					<div class=" panel-body ">
+					 Email: usted@ejemplo.com
+					 Móvil: +92123456789
+					 Twitter: <a href="https://twitter.com/suTwitter">@suTwitter</a> |Suweb: <a href="http://www.suweb.com/author/usted"> http: //www. suweb.com/author/usted / </a>
+					<h4><small> El pago debe ser por transferencia bancaria </h4>
+					</div>
+					</div>
+					</div>
+	</body>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(function () {
 		//Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
 		$('#listProcesos').DataTable();
 	});
